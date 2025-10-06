@@ -27,7 +27,7 @@ export const BiddingPanel = ({ gameId, isMyTurn, currentBid }: BiddingPanelProps
     mutationFn: ({ contractType, value }: { contractType: string; value: number }) =>
       apiFetch(`/games/${gameId}/bid`, {
         method: 'POST',
-        body: JSON.stringify({ contractType, value }),
+        body: { contractType, value },
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.game(gameId) });

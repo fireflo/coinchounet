@@ -10,6 +10,8 @@ export interface SocketUser {
 }
 
 interface ClientToServerEvents {
+  join: (payload: { channel: string }, callback: (response: { ok: boolean; error?: string }) => void) => void;
+  leave: (payload: { channel: string }, callback: (response: { ok: boolean; error?: string }) => void) => void;
   'room:join': (roomId: string, callback: (response: { ok: boolean; error?: string }) => void) => void;
   'room:leave': (roomId: string, callback: (response: { ok: boolean; error?: string }) => void) => void;
   'game:join': (gameId: string, callback: (response: { ok: boolean; error?: string }) => void) => void;
@@ -87,6 +89,26 @@ export const createSocketServer = (httpServer: HttpServer): TypedServer => {
   io.on('connection', (socket: TypedSocket) => {
     const userId = socket.data.user.userId;
     console.log(`Socket connected: ${socket.id} (user: ${userId})`);
+
+    // Generic join handler (for frontend socket client)
+    socket.on('join', (payload: { channel: string }, callback) => {
+      const { channel } = payload;
+      socket.join(channel);
+      console.log(`User ${userId} joined channel ${channel}`);
+      if (typeof callback === 'function') {
+        callback({ ok: true });
+      }
+    });
+
+    // Generic leave handler (for frontend socket client)
+    socket.on('leave', (payload: { channel: string }, callback) => {
+      const { channel } = payload;
+      socket.leave(channel);
+      console.log(`User ${userId} left channel ${channel}`);
+      if (typeof callback === 'function') {
+        callback({ ok: true });
+      }
+    });
 
     // Room join handler
     socket.on('room:join', (roomId, callback) => {

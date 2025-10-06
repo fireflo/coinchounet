@@ -51,7 +51,7 @@ const RoomPage = () => {
     mutationFn: (ready: boolean) =>
       apiFetch<Room>(`/rooms/${roomId}/ready`, {
         method: 'POST',
-        body: JSON.stringify({ ready }),
+        body: { ready },
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.room(roomId) });

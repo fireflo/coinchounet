@@ -70,13 +70,8 @@ const GameTablePage = () => {
     enabled: Boolean(gameId),
   });
 
-  if (isLoading || !gameState) {
-    return <div className="text-muted-foreground">Loading table…</div>;
-  }
-
-  const { turnOrder, score, contracts, publicContainers } = gameState;
-  const currentTrick = publicContainers.currentTrick?.order ?? [];
-
+  // Move all useMemo/useState/useEffect BEFORE early returns
+  const turnOrder = gameState?.turnOrder ?? [];
   const arrangedOrder = useMemo(() => {
     if (!turnOrder.length) {
       return [] as string[];
@@ -87,6 +82,14 @@ const GameTablePage = () => {
     }
     return [...turnOrder.slice(selfIndex), ...turnOrder.slice(0, selfIndex)];
   }, [turnOrder]);
+
+  // Early return AFTER all hooks
+  if (isLoading || !gameState) {
+    return <div className="text-muted-foreground">Loading table…</div>;
+  }
+
+  const { score, contracts, publicContainers } = gameState;
+  const currentTrick = publicContainers.currentTrick?.order ?? [];
 
   const seats = {
     south: arrangedOrder[0] ?? null,

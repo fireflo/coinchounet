@@ -9,8 +9,8 @@ type SocketContextValue = {
 
 const SocketContext = createContext<SocketContextValue | undefined>(undefined);
 
-const SOCKET_BASE_URL = import.meta.env.VITE_SOCKET_BASE_URL ?? import.meta.env.VITE_API_BASE_URL ?? 'https://api.example.com/v1';
-const DEV_TOKEN = 'dev-token';
+const SOCKET_BASE_URL = import.meta.env.VITE_SOCKET_BASE_URL ?? import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3001';
+const DEV_TOKEN = 'dev-user-player1';
 
 export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const clientRef = useRef<SocketClient>();

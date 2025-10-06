@@ -18,12 +18,12 @@ export const CardPlayPanel = ({ gameId, hand, isMyTurn, stateVersion }: CardPlay
     mutationFn: (card: string) =>
       apiFetch(`/games/${gameId}/turns/current/move`, {
         method: 'POST',
-        body: JSON.stringify({
+        body: {
           clientMoveId: `move_${Date.now()}`,
           moveType: 'play_card',
           payload: { card },
           stateVersion,
-        }),
+        },
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.game(gameId) });
