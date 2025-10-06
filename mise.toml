@@ -1,0 +1,3 @@
+[tasks."swagger:ui"]
+description = "Serve Swagger UI for specs/openapi.yaml at http://localhost:8080"
+run = "npm run swagger:ui"

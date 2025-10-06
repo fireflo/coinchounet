@@ -1,0 +1,15 @@
+[tools]
+node = "20"
+pnpm = "8"
+
+[tasks."dev"]
+description = "Start the API server in watch mode"
+run = "pnpm dev"
+
+[tasks."test"]
+description = "Run Vitest suite for the server"
+run = "pnpm test"
+
+[tasks."lint"]
+description = "Run linting"
+run = "pnpm lint"
