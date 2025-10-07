@@ -23,16 +23,45 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Build client (root)
+        run: npm run build --if-present
+
+      - name: Build server
         run: |
-          npm install
-          npm run build --if-present
+          npm --prefix server ci
+          npm --prefix server run build
+
+      - name: Install server production deps
+        run: npm --prefix server ci --production --no-audit --no-fund
+
+      - name: Package server + client static
+        run: |
+          rm -rf package || true
+          mkdir package
+          # Copy server build output and package manifest
+          cp -R server/dist package/dist
+          cp server/package.json package/
+          # Copy server production node_modules
+          cp -R server/node_modules package/node_modules
+          # Copy client static build into server's dist (Vite output at repo root/dist)
+          if [ -d dist ]; then
+            mkdir -p package/dist/public
+            cp -R dist/* package/dist/public/
+          else
+            echo "Warning: client build 'dist' not found — ensure client build succeeded."
+          fi
+          cd package
+          zip -r ../package.zip .
+          cd ..
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: package.zip
 
   deploy:
     runs-on: ubuntu-latest

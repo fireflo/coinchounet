@@ -1,12 +1,14 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import helmet from 'helmet';
+import fs from 'node:fs';
+import path from 'node:path';
 import { config } from './config';
+import { HttpError, isHttpError } from './errors';
 import { requestLogger } from './logger';
-import { sendError } from './utils/responses';
-import { isHttpError, HttpError } from './errors';
-import { createCorrelationId } from './utils/correlation';
 import { apiRouter } from './routes';
+import { createCorrelationId } from './utils/correlation';
+import { sendError } from './utils/responses';
 
 export const createApp = () => {
   const app = express();
@@ -27,6 +29,27 @@ export const createApp = () => {
   });
 
   app.use(apiRouter);
+
+  // Serve client static build if present (expects client built files in dist/public)
+  try {
+    const clientStaticPath = path.join(__dirname, 'public');
+    if (fs.existsSync(clientStaticPath)) {
+      app.use(express.static(clientStaticPath));
+
+      // SPA fallback for non-API routes — let API routes take precedence above
+      app.get('/*', (req, res, next) => {
+        const url = req.originalUrl || req.url;
+        if (url.startsWith('/auth') || url.startsWith('/rooms') || url.startsWith('/games') || url.startsWith('/socket.io')) {
+          return next();
+        }
+        res.sendFile(path.join(clientStaticPath, 'index.html'));
+      });
+    }
+  } catch (e) {
+    // If anything goes wrong while mounting static assets, don't block the server.
+    // eslint-disable-next-line no-console
+    console.warn('Could not mount client static assets:', e);
+  }
 
   app.use((_req, _res, next) => {
     next(new HttpError(404, 'not_found', 'Resource not found'));
