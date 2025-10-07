@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { apiFetch, queryKeys } from '../../api/client';
+import SuitText from '../../components/SuitText';
 
 interface BiddingPanelProps {
   gameId: string;
@@ -116,7 +117,7 @@ export const BiddingPanel = ({ gameId, isMyTurn, currentBid }: BiddingPanelProps
                       : 'border-border bg-background hover:bg-muted'
                   }`}
                 >
-                  {contract.symbol}
+                  <SuitText text={contract.symbol} />
                 </button>
               ))}
             </div>

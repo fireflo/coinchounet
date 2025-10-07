@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiFetch, queryKeys } from '../../api/client';
 import type { GameState, PrivateHand, TurnMetadata } from '../../api/types';
+import SuitText from '../../components/SuitText';
 import { DEV_PLAYER_ID, useRealtimeGame } from '../../realtime/useRealtimeGame';
 import { BiddingPanel } from './BiddingPanel';
 import { CardPlayPanel } from './CardPlayPanel';
@@ -30,7 +31,7 @@ const PlayerSeat = ({
 
 const CardPill = ({ card }: { card: string }) => (
   <div className="rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold shadow-sm">
-    {card}
+    <SuitText text={card} />
   </div>
 );
 
@@ -41,7 +42,7 @@ const TrickCard = ({ playerId, card, isWinner }: { playerId: string; card: strin
     }`}
   >
     <span>{playerId}</span>
-    <span className="font-semibold">{card}</span>
+  <span className="font-semibold"><SuitText text={card} /></span>
   </div>
 );
 

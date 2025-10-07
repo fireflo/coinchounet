@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { apiFetch, queryKeys } from '../../api/client';
+import SuitText from '../../components/SuitText';
 
 interface CardPlayPanelProps {
   gameId: string;
@@ -71,7 +72,7 @@ export const CardPlayPanel = ({ gameId, hand, isMyTurn, stateVersion }: CardPlay
                 : 'border-border bg-background hover:bg-muted disabled:opacity-50'
             }`}
           >
-            {card}
+            <SuitText text={card} />
           </button>
         ))}
       </div>
