@@ -21,21 +21,31 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '22.x'
+          # Use an LTS runtime that is commonly supported by Azure App Service
+          node-version: '18.x'
 
       - name: Install root dependencies
         run: npm ci
 
       - name: Build client (root)
+        env:
+          NODE_ENV: production
         run: npm run build --if-present
 
       - name: Build server
         run: |
+          # Install server dev deps (if required for the build) and build
           npm --prefix server ci
           npm --prefix server run build
 
       - name: Install server production deps
-        run: npm --prefix server ci --production --no-audit --no-fund
+        env:
+          NODE_ENV: production
+        run: |
+          # Install only production dependencies for packaging/deployment
+          npm --prefix server ci --production --no-audit --no-fund
+          # Ensure no devDependencies remain and prune extraneous files
+          npm --prefix server prune --production || true
 
       - name: Package server + client static
         run: |
@@ -44,8 +54,14 @@ jobs:
           # Copy server build output and package manifest
           cp -R server/dist package/dist
           cp server/package.json package/
-          # Copy server production node_modules
-          cp -R server/node_modules package/node_modules
+          # Cleanup server node_modules cache if present to save space
+          rm -rf server/node_modules/.cache || true
+          # Copy server production node_modules (pruned in previous step)
+          if [ -d server/node_modules ]; then
+            cp -R server/node_modules package/node_modules
+          else
+            echo "Warning: server/node_modules not found — server production deps may be missing."
+          fi
           # Copy client static build into server's dist (Vite output at repo root/dist)
           if [ -d dist ]; then
             mkdir -p package/dist/public
@@ -90,6 +106,3 @@ jobs:
           app-name: 'coinchounet'
           slot-name: 'Production'
           package: package.zip
-
-          
-
