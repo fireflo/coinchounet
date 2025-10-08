@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - coinchounet
 on:
   push:
     branches:
-      - main
+      - main-norun
   workflow_dispatch:
 
 jobs:
@@ -92,3 +92,4 @@ jobs:
           package: .
 
           
+
