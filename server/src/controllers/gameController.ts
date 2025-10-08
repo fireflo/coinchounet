@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { gameService } from '../services/gameService';
+import { gameService } from '../services/gameService.js';
 
 export const gameController = {
   getState: (req: Request, res: Response) => {

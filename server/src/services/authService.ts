@@ -1,4 +1,4 @@
-import { HttpError } from '../errors';
+import { HttpError } from '../errors.js';
 
 /**
  * Auth service for OAuth token exchange

@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { authRouter } from './auth';
-import { roomsRouter } from './rooms';
-import { gamesRouter } from './games';
-import { eventsRouter } from './streaming/events';
-import { socketRouter } from './streaming/socket';
+import { authRouter } from './auth.js';
+import { gamesRouter } from './games.js';
+import { roomsRouter } from './rooms.js';
+import { eventsRouter } from './streaming/events.js';
+import { socketRouter } from './streaming/socket.js';
 
 const router = Router();
 

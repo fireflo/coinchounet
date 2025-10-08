@@ -1,19 +1,19 @@
 import { randomUUID } from 'node:crypto';
-import type { MoveSubmission, MoveResult, GameState, TurnMetadata, PrivateHand } from '../types/api';
-import type { GameCreateContext, GameEntity, MoveContext, RoomEntity } from '../types/domain';
+import type { GameState, MoveResult, MoveSubmission, PrivateHand, TurnMetadata } from '../types/api.js';
+import type { GameEntity, MoveContext, RoomEntity } from '../types/domain.js';
 
-import type { TypedServer } from '../realtime/socketServer';
-import { gameStore } from '../stores/gameStore';
-import { roomStore } from '../stores/roomStore';
-import { eventStore } from '../stores/eventStore';
-import { HttpError } from '../errors';
+import { HttpError } from '../errors.js';
+import type { TypedServer } from '../realtime/socketServer.js';
+import { eventStore } from '../stores/eventStore.js';
+import { gameStore } from '../stores/gameStore.js';
+import { roomStore } from '../stores/roomStore.js';
 
-import * as coinche from '../rules/coinche';
-import * as bidding from '../rules/bidding';
-import * as scoring from '../rules/scoring';
+import * as bidding from '../rules/bidding.js';
+import * as coinche from '../rules/coinche.js';
+import * as scoring from '../rules/scoring.js';
 
-import * as botService from './botService';
-import { setGameService } from './roomService';
+import * as botService from './botService.js';
+import { setGameService } from './roomService.js';
 
 // Initialize room service reference
 setGameService(null); // Will be set after export

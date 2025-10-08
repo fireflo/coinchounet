@@ -1,11 +1,10 @@
-import { randomUUID } from 'node:crypto';
-import type { Room, Seat } from '../types/api';
-import type { CreateRoomInput, RoomEntity, RoomFilters } from '../types/domain';
-import { HttpError } from '../errors';
+import { HttpError } from '../errors.js';
+import type { Room } from '../types/api.js';
+import type { CreateRoomInput, RoomEntity, RoomFilters } from '../types/domain.js';
 
-import { roomStore } from '../stores/roomStore';
+import { roomStore } from '../stores/roomStore.js';
 
-import * as botService from './botService';
+import * as botService from './botService.js';
 
 // Forward declaration to avoid circular dependency
 let gameServiceRef: any = null;

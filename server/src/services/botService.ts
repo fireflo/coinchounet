@@ -6,9 +6,9 @@
  * - Card Play: Play valid move, prefer highest card unless losing trick
  */
 
-import type { GameEntity } from '../types/domain';
-import * as coinche from '../rules/coinche';
-import type * as bidding from '../rules/bidding';
+import type * as bidding from '../rules/bidding.js';
+import * as coinche from '../rules/coinche.js';
+import type { GameEntity } from '../types/domain.js';
 
 export interface BotPlayer {
   userId: string;

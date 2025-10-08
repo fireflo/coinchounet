@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
-import { roomService } from '../services/roomService';
-import type { CreateRoomInput } from '../types/domain';
+import { roomService } from '../services/roomService.js';
+import type { CreateRoomInput } from '../types/domain.js';
 
 export const roomController = {
   create: (req: Request, res: Response) => {

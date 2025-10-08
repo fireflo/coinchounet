@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
-import { config } from '../config';
-import { HttpError } from '../errors';
-import type { Role } from '../types/auth';
+import { config } from '../config.js';
+import { HttpError } from '../errors.js';
+import type { Role } from '../types/auth.js';
 
 const DEV_USER_ID = 'user_dev';
 

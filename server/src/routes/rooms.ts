@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { roomController } from '../controllers/roomController';
-import { requireAuth } from '../middleware/auth';
-import { validateRequest } from '../middleware/validateRequest';
-import { createRoomSchema, joinRoomSchema, toggleReadySchema } from '../schemas/roomSchemas';
-import { asyncHandler } from '../utils/asyncHandler';
-import { withIdempotency } from '../middleware/idempotency';
+import { roomController } from '../controllers/roomController.js';
+import { requireAuth } from '../middleware/auth.js';
+import { withIdempotency } from '../middleware/idempotency.js';
+import { validateRequest } from '../middleware/validateRequest.js';
+import { createRoomSchema, joinRoomSchema, toggleReadySchema } from '../schemas/roomSchemas.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 const router = Router();
 

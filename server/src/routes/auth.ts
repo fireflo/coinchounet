@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { authController } from '../controllers/authController';
-import { validateRequest } from '../middleware/validateRequest';
-import { oauthTokenSchema } from '../schemas/authSchemas';
-import { asyncHandler } from '../utils/asyncHandler';
+import { authController } from '../controllers/authController.js';
+import { validateRequest } from '../middleware/validateRequest.js';
+import { oauthTokenSchema } from '../schemas/authSchemas.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 const router = Router();
 

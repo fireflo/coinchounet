@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { gameController } from '../controllers/gameController';
-import { requireAuth } from '../middleware/auth';
-import { validateRequest } from '../middleware/validateRequest';
-import { moveSubmissionSchema } from '../schemas/gameSchemas';
-import { asyncHandler } from '../utils/asyncHandler';
-import { withIdempotency } from '../middleware/idempotency';
+import { gameController } from '../controllers/gameController.js';
+import { requireAuth } from '../middleware/auth.js';
+import { withIdempotency } from '../middleware/idempotency.js';
+import { validateRequest } from '../middleware/validateRequest.js';
+import { moveSubmissionSchema } from '../schemas/gameSchemas.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 const router = Router();
 
