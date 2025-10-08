@@ -17,6 +17,11 @@ const cloneGame = (game: GameEntity): GameEntity => ({
   currentTurnIndex: game.currentTurnIndex,
   currentTrickOrder: [...game.currentTrickOrder],
   moveResults: new Map(game.moveResults),
+  biddingState: game.biddingState,
+  currentBidderIndex: game.currentBidderIndex,
+  completedTricks: [...game.completedTricks],
+  cumulativeScores: { ...game.cumulativeScores },
+  roundNumber: game.roundNumber,
 });
 
 export const gameStore = {
