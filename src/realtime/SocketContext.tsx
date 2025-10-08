@@ -13,7 +13,7 @@ const SOCKET_BASE_URL = import.meta.env.VITE_SOCKET_BASE_URL ?? import.meta.env.
 const DEV_TOKEN = 'dev-user-player1';
 
 export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const clientRef = useRef<SocketClient>();
+  const clientRef = useRef<SocketClient>(null);
 
   if (!clientRef.current) {
     clientRef.current = createSocketClient({
