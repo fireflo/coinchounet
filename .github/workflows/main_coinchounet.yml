@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           # Use an LTS runtime that is commonly supported by Azure App Service
-          node-version: '18.x'
+          node-version: '20.x'
 
       - name: Install root dependencies
         run: npm ci
