@@ -89,7 +89,7 @@ jobs:
         with:
           app-name: 'coinchounet'
           slot-name: 'Production'
-          package: .
+          package: package.zip
 
           
 
