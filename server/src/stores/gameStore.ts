@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import type { GameEntity } from '../types/domain';
+import type { GameEntity } from '../types/domain.js';
 
 const games = new Map<string, GameEntity>();
 

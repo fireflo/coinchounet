@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import type { CreateRoomInput, RoomEntity, RoomFilters } from '../types/domain';
-import type { Room } from '../types/api';
+import type { Room } from '../types/api.js';
+import type { CreateRoomInput, RoomEntity, RoomFilters } from '../types/domain.js';
 
 const rooms = new Map<string, RoomEntity>();
 

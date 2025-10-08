@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import type { GameEventEnvelope } from '../types/domain';
+import type { GameEventEnvelope } from '../types/domain.js';
 
 const events = new Map<string, GameEventEnvelope[]>();
 
