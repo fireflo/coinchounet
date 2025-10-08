@@ -3,12 +3,15 @@ import express from 'express';
 import helmet from 'helmet';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { config } from './config.js';
 import { HttpError, isHttpError } from './errors.js';
 import { requestLogger } from './logger.js';
 import { apiRouter } from './routes/index.js';
 import { createCorrelationId } from './utils/correlation.js';
 import { sendError } from './utils/responses.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const createApp = () => {
   const app = express();
