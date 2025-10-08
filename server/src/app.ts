@@ -3,12 +3,12 @@ import express from 'express';
 import helmet from 'helmet';
 import fs from 'node:fs';
 import path from 'node:path';
-import { config } from './config';
-import { HttpError, isHttpError } from './errors';
-import { requestLogger } from './logger';
-import { apiRouter } from './routes';
-import { createCorrelationId } from './utils/correlation';
-import { sendError } from './utils/responses';
+import { config } from './config.js';
+import { HttpError, isHttpError } from './errors.js';
+import { requestLogger } from './logger.js';
+import { apiRouter } from './routes/index.js';
+import { createCorrelationId } from './utils/correlation.js';
+import { sendError } from './utils/responses.js';
 
 export const createApp = () => {
   const app = express();
