@@ -8,7 +8,7 @@
 
 import type { GameEntity } from '../types/domain';
 import * as coinche from '../rules/coinche';
-import * as bidding from '../rules/bidding';
+import type * as bidding from '../rules/bidding';
 
 export interface BotPlayer {
   userId: string;

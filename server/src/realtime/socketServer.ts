@@ -1,5 +1,6 @@
-import { Server as HttpServer } from 'node:http';
-import { Server, Socket } from 'socket.io';
+import type { Server as HttpServer } from 'node:http';
+import type { Socket } from 'socket.io';
+import { Server } from 'socket.io';
 import { eventStore } from '../stores/eventStore';
 import { gameStore } from '../stores/gameStore';
 import { roomStore } from '../stores/roomStore';
