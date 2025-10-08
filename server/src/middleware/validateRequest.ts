@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express';
 import type { AnyZodObject, ZodEffects } from 'zod';
-import { HttpError } from '../errors';
+import { HttpError } from '../errors.js';
 
 export type Schema<T> = AnyZodObject | ZodEffects<AnyZodObject, T>;
 

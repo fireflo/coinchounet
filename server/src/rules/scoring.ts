@@ -10,7 +10,7 @@
  * - Coinche multipliers (x2 for coinche, x4 for surcoinche)
  */
 
-import type { Card, ContractType } from './coinche';
+import type { Card, ContractType } from './coinche.js';
 
 export interface TrickResult {
   winnerId: string;

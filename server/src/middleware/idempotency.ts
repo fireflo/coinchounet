@@ -1,6 +1,6 @@
 import type { RequestHandler, Response } from 'express';
-import type { HttpResult } from '../errors';
-import { idempotencyStore } from '../stores/idempotencyStore';
+import type { HttpResult } from '../errors.js';
+import { idempotencyStore } from '../stores/idempotencyStore.js';
 
 const respond = (res: Response, result: HttpResult<unknown>) => {
   res.status(result.status).json(result.body);

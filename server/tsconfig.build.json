@@ -4,8 +4,10 @@
     "declaration": true,
     "emitDeclarationOnly": false,
     "sourceMap": true,
-    "noEmit": false
+    "noEmit": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "include": ["src"],
-  "exclude": ["tests", "node_modules"]
+  "exclude": ["tests", "node_modules", "dist"]
 }

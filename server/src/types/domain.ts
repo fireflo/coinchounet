@@ -7,9 +7,9 @@ import type {
   Seat,
   TurnMetadata,
   EventEnvelope,
-} from './api';
-import type { BiddingState } from '../rules/bidding';
-import type { TrickResult } from '../rules/scoring';
+} from './api.js';
+import type { BiddingState } from '../rules/bidding.js';
+import type { TrickResult } from '../rules/scoring.js';
 
 export interface RoomEntity extends Room {
   locked: boolean;

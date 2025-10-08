@@ -1,7 +1,7 @@
 import type { Response } from 'express';
-import { createCorrelationId } from './correlation';
-import type { ErrorBody } from '../types/api';
-import type { HttpError } from '../errors';
+import { createCorrelationId } from './correlation.js';
+import type { ErrorBody } from '../types/api.js';
+import type { HttpError } from '../errors.js';
 
 export const sendJson = <T>(res: Response, status: number, body: T) => {
   res.status(status).json(body);
